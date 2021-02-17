@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:02 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/17 16:22:03 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/17 17:06:14 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ft_init_pipe(t_mini *mini)
         i++;
     }
 }
-
+//test
 void ft_get_pipe_args(t_mini *mini, int k)
 {
     int i = -1;
