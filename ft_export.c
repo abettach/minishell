@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:20 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/17 14:55:02 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/19 16:10:33 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int     ft_check_quotes(t_mini *mini)
         j = 0;
         while(mini->args[i][j])
         {
-            if (mini->args[i][j] == '"')
+            if (mini->args[i][j] == '"' || mini->args[i][j] == 39)
                 return 1;
             j++;
         }
@@ -122,7 +122,7 @@ void ft_skipe_quotes(t_mini *mini)
             j = 0;
             while (mini->args[i][j])
             {
-                if (mini->args[i][j] == 34 || mini->args[i][j] == 39)
+                if (mini->args[i][j] == 34 || mini->args[i][j] == '\'')
                     j++;
                 new_tab[i][k] = mini->args[i][j];
                 k++;
@@ -146,7 +146,7 @@ void ft_export(t_mini *mini)
         if ((mini->args[i][0] >= 'a' && mini->args[i][0] <= 'z') ||
             (mini->args[i][0] >= 'A' && mini->args[i][0] <= 'Z') || (mini->args[i][0] == '_'))
         {
-            if (ft_equal_check(mini, mini->args[i]) == 1)
+            if (ft_equal_check(mini, mini->args[i]) == 1 && mini->args[i][0] != '_')
                 while (i < mini->ArgsNum)
                 {
                     j = 0;

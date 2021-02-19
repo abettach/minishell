@@ -104,6 +104,7 @@ typedef struct s_mini
 	int check_pipe;
 	int ArgsNum;
 	char **envp_g;
+	char **redirection_args;
 	char cwd[PATH_MAX];
 	t_export export;
 	t_unset unset;

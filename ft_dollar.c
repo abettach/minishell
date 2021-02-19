@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:48 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/19 14:15:54 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/19 15:59:27 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void ft_env_dollar(t_mini *mini, int i)
     char *arg;
     k = -1;
     j = 0;
-    
-    arg = ft_strjoin(mini->echo.args[i],"=");
+
+    arg = ft_strjoin(mini->echo.args[i], "=");
     while (mini->envp_g[++k])
         if (ft_strncmp(mini->envp_g[k], arg, ft_strlen(arg)) == 0)
         {
@@ -78,7 +78,7 @@ void ft_dollar_syn(t_mini *mini, int i)
                 if (j == 0)
                     mini->dollar.prefix = "$";
                 mini->dollar.prefix = ft_strjoin(mini->dollar.prefix, &mini->echo.args[i][j]);
-                while(mini->echo.args[i][j])
+                while (mini->echo.args[i][j])
                 {
                     mini->echo.args[i][j] = '\0';
                     j++;
@@ -92,6 +92,11 @@ void ft_dollar_syn(t_mini *mini, int i)
                 if (j == 0)
                     mini->dollar.suffix = "$";
                 mini->dollar.suffix = ft_strjoin(mini->dollar.suffix, &mini->echo.args[i][j]);
+                while (mini->echo.args[i][j])
+                {
+                    mini->echo.args[i][j] = '\0';
+                    j++;
+                }
             }
         }
         j++;
@@ -111,9 +116,11 @@ void ft_get_value(t_mini *mini, char *arg)
         if (mini->echo.args[i][0] != '?')
         {
             ft_dollar_syn(mini, i);
-            if (mini->dollar.prefixx == 1)
+            if (mini->dollar.prefixx == 1 && !mini->args[i])
                 mini->dollar.value = ft_strjoin(mini->dollar.value, mini->dollar.prefix);
             ft_env_dollar(mini, i);
+            if (mini->dollar.prefixx == 1 && mini->args[i])
+                mini->dollar.value = ft_strjoin(mini->dollar.value, mini->dollar.prefix);
             if (mini->dollar.suffixx == 1)
                 mini->dollar.value = ft_strjoin(mini->dollar.value, mini->dollar.suffix);
         }
