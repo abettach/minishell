@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:48 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/16 17:21:33 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:15:54 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ void ft_dollar_syn(t_mini *mini, int i)
                 if (j == 0)
                     mini->dollar.prefix = "$";
                 mini->dollar.prefix = ft_strjoin(mini->dollar.prefix, &mini->echo.args[i][j]);
+                while(mini->echo.args[i][j])
+                {
+                    mini->echo.args[i][j] = '\0';
+                    j++;
+                }
                 break;
             }
             else
