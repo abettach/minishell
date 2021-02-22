@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:39 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/16 16:23:51 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/22 15:44:02 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void ft_init(t_mini *mini)
 	mini->STD = 1;
 	g_double_input_redirection = 0;
 	g_pipe = 0;
+	mini->exit_status = 0;
 	g_input_file = NULL;
 	g_output_file = NULL;
 	g_double_input_redirection = 0;

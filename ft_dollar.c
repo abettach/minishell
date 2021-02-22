@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:48 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/19 15:59:27 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/22 15:42:20 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,18 @@ void ft_print_num(t_mini *mini, int i)
     }
 }
 
+int     ft_alphanum(char c)
+{
+    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+        return 1;
+    return 0;
+}
 int ft_valid_dollar_arg(t_mini *mini, int i)
 {
     int j = 0;
     while (mini->echo.args[i][j])
     {
-        if (mini->echo.args[i][j] == '%' || mini->echo.args[i][j] == '=' || mini->echo.args[i][j] == '+' || mini->echo.args[i][j] == '=')
+        if (!ft_alphanum(mini->echo.args[i][j]))
             return 0;
         j++;
     }
@@ -69,7 +75,7 @@ void ft_dollar_syn(t_mini *mini, int i)
     mini->dollar.suffixx = 0;
     while (mini->echo.args[i][j])
     {
-        if (mini->echo.args[i][j] == '%' || mini->echo.args[i][j] == '=' || mini->echo.args[i][j] == '+' || mini->echo.args[i][j] == '=')
+        if (!ft_alphanum(mini->echo.args[i][j]))
         {
             if (mini->echo.args[i + 1])
             {

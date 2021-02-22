@@ -47,7 +47,7 @@ exec_test 'export 1TEST= ; $ENV_SHOW'
 exec_test 'export TEST ;' $EXPORT_SHOW
 exec_test 'export ""="" ; ' $ENV_SHOW
 exec_test 'export TES=T="" ;' $ENV_SHOW
-exec_test '     ;' $ENV_SHOW
+exec_test '     ;' $ENV_SHOW # error
 exec_test 'export TEST=LOL ; echo $TEST ;' $ENV_SHOW
 exec_test 'export TEST=LOL ; echo $TEST$TEST$TEST=lol$TEST'
 exec_test 'export TEST=LOL; export TEST+=LOL ; echo $TEST ;' $ENV_SHOW
