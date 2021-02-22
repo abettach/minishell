@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:20 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/19 16:10:33 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/22 15:57:51 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ void ft_export(t_mini *mini)
     int l = -1;
     char *arg;
 
-    ft_skipe_quotes(mini);
+    if (mini->args[i][0] == 34)
+        ft_skipe_quotes(mini);
     if (mini->ArgsNum > 1)
     {
         if ((mini->args[i][0] >= 'a' && mini->args[i][0] <= 'z') ||
