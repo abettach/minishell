@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:29 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/07 12:35:41 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/23 15:13:04 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ void ft_cd(t_mini *mini)
         return;
     else if (mini->args[1] == NULL)
         mini->args[1] = mini->home;
-    chdir(mini->args[1]);
+    if (ft_strcmp(mini->home, "ERROR") == 0)
+        ft_error("cd: HOME not set","","");
+    else
+        chdir(mini->args[1]);
 }

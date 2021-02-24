@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:49 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/22 16:01:23 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/24 12:49:33 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ void ft_start_minishell(t_mini *mini)
         mini->check_pipe = 0;
         ft_check_pipe_command(mini, i);
         mini->line = ft_strcpy(mini->line, mini->multi_command[i]);
-        ft_init(mini);
+        //ft_init(mini);
         if (mini->check_pipe == 0)
         {
+            // ft_get_home(&mini);
             ft_get_args(mini);
             ft_sorte_args(mini);
             ft_get_path(mini);

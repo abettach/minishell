@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:19:07 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/22 15:49:16 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/24 17:07:12 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,17 +149,48 @@ void ft_redirection_nocommand(t_mini *mini)
     }
 }
 
+char *ft_skipe_quotes_str(t_mini *mini)
+{
+    int i = 0;
+    int index = 0;
+    int j = 0;
+    char *new_line;
+
+    while (mini->line[i])
+    {
+        if (mini->line[i] == 34)
+            index++;
+        i++;
+    }
+    i = 0;
+    new_line = (char *)malloc(sizeof(char) * (ft_strlen(mini->line) - index) + 1);
+    while (mini->line[i])
+    {
+        while (mini->line[i] == 34)
+            i++;
+        new_line[j] = mini->line[i];
+        i++;
+        j++;
+    }
+    new_line[j] = '\0';
+    return new_line;
+}
+
 int main(int argc, char **argv, char **envp)
 {
     t_mini mini;
     int i = 0;
     int r;
 
-    ft_get_home(&mini, envp);
+    //printf("\n\n\t\tMINISHELL\t\t\n\n");
+    // mini.exit_status = 0;
     getcwd(mini.cwd, sizeof(mini.cwd));
     mini.envp_g = ft_copy_env(&mini, envp);
-    mini.first_lvl = ft_env_shellvl(&mini);
-    mini.shell_lvl = ft_env_shellvl(&mini);
+    ft_get_home(&mini);
+    mini.first_lvl = ft_atoi(ft_env_shellvl(&mini));
+    mini.shell_lvl = mini.first_lvl;
+    mini.first_lvl++;
+    ft_shell_lvl(&mini);
     while (1)
     {
         getcwd(mini.cwd, sizeof(mini.cwd));
@@ -168,6 +199,7 @@ int main(int argc, char **argv, char **envp)
         signal(SIGINT, ft_ctrl_c);
         signal(SIGQUIT, ft_ctrl_anti);
         r = get_next_line(0, &mini.line, &mini);
+        //mini.line = ft_skipe_quotes_str(&mini);
         if (r == 0)
         {
             ft_putstr("exit\n");

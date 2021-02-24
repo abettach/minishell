@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:39 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/22 17:44:08 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/24 12:41:41 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,26 @@ void ft_exit(t_mini *mini)
 {
 	char *arg;
 	int j = -1;
-	mini->shell_lvl -= 1;
+	mini->shell_lvl--;
+	arg = (char *)malloc(sizeof(char) * (ft_strlen(mini->args[1])));
+	arg = "";
+	if (mini->args[1])
+		arg = ft_strjoin(arg,mini->args[1]);
+	else
+		arg = ft_strjoin(arg,"0");
 	if (mini->shell_lvl >= mini->first_lvl)
 	{
 		arg = "SHLVL=";
 		while (mini->envp_g[++j])
 			if (ft_strncmp(mini->envp_g[j], arg, ft_strlen(arg)) == 0)
 				mini->envp_g = ft_remove_unset(mini, j);
-		arg = ft_strjoin3(arg, mini->shell_lvl);
+		arg = ft_strjoin(arg, ft_itoa(mini->shell_lvl));
 		ft_strjoin2(mini->envp_g, arg);
 	}
 	else if (mini->shell_lvl < mini->first_lvl)
 	{
 		waitpid(-1,0,0);
-		exit(mini->exit_status);
+		exit(ft_atoi(arg));
 	}
 }
 
@@ -44,7 +50,7 @@ void ft_init(t_mini *mini)
 	mini->STD = 1;
 	g_double_input_redirection = 0;
 	g_pipe = 0;
-	mini->exit_status = 0;
+	// mini->exit_status = 0;
 	g_input_file = NULL;
 	g_output_file = NULL;
 	g_double_input_redirection = 0;

@@ -6,73 +6,60 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:22 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/06 15:18:25 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/24 15:49:14 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static size_t	ft_first(char const *s1, char const *set, size_t j)
+static  int     retur(char c1, const char *c2)
 {
-	size_t	i;
-
-	i = 0;
-	while (set[i] != '\0' && s1[j] != '\0')
-	{
-		if (s1[j] == set[i])
-		{
-			j++;
-			i = 0;
-		}
-		else
-			i++;
-	}
-	return (j);
+    int         i;
+    i = 0;
+    while (c2[i])
+    {
+        if (c1 == c2[i])
+            return (1);
+        i++;
+    }
+    return (0);
+}
+char            *ft_strtrim(char const *s1, char const *set)
+{
+    char        *con;
+    size_t      len;
+    size_t      i;
+    i = 0;
+	con = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	con =  "";
+    con = ft_strjoin(con,s1);
+    if (con == 0)
+        return (0);
+    while (retur(con[i], set) == 1)
+        i++;
+    len = ft_strlen(con) - 1;
+    while (len > 0)
+    {
+        if (retur(con[len], set) == 0)
+            break ;
+        con[len] = '\0';
+        len--;
+    }
+    return (ft_strdup(con + i));
 }
 
-static size_t	ft_last(char const *s1, char const *set, size_t j)
+int 	finde_next(char *ptr, int i, char c)
 {
-	size_t	i;
-
-	i = 0;
-	while (set[i] != '\0')
+	
+	while (ptr[i])
 	{
-		if (s1[j - 1] == set[i])
+		if (ptr[i] == c)
 		{
-			j--;
-			i = 0;
+			return(i);
 		}
-		else
-			i++;
+		i++;
 	}
-	return (j);
-}
-
-char			*ft_strtrim(char const *s1, char const *set)
-{
-	size_t	len;
-	size_t	first;
-	size_t	last;
-	size_t	x;
-	char	*tab;
-
-	if (!s1 || !set)
-		return (0);
-	len = ft_strlen(s1);
-	first = ft_first(s1, set, 0);
-	if (first == len)
-		return (ft_strdup(""));
-	haha : last = ft_last(s1, set, len);
-	if (last < first)
-		return (0);
-	tab = malloc(last - first + 1);
-	x = 0;
-	if (!tab)
-		return (0);
-	while (s1[first] != '\0' && first < last)
-		tab[x++] = s1[first++];
-	tab[x] = '\0';
-	return (tab);
+	return(i);
 }
 
 static	int			c_word(char *str, char c)
@@ -85,10 +72,7 @@ static	int			c_word(char *str, char c)
 	while (str[++i])
 	{
 		if (str[i] == '\'' || str[i] == '"')
-		{
-			i = skip_quots(str, str[i],i);
-				//printf("|%c|",ptr[nn+1]);
-		}
+			i = finde_next(str, i,str[i]);
 		if (str[i] == c && str[i + 1] != c)
 			count++;
 		if (str[i] != c && str[i + 1] == '\0')
@@ -125,7 +109,9 @@ static	char		*remplir(char *s, int *k, char c)
 	while (s[i] != c && s[i])
 	{
 		if (s[i] == '\'' || s[i] == '"')
-			i = skip_quots(s, s[i],i);
+		{
+			i = finde_next(s, i,s[i]);
+		}
 		i++;
 	
 	}
@@ -147,17 +133,11 @@ char				**ft_split(char const *s, char c)
 	int		j;
 	int		k;
 
-	if (s == NULL)
-		return (NULL);
 	i = -1;
 	str = ft_strtrim(s, &c);
-	if (str == NULL)
-		return (NULL);
+
 	j = c_word(str, c);
-	//printf("|%d|",j);
 	tab = (char **)malloc((j + 1) * sizeof(char*));
-	if (tab == NULL)
-		return (NULL);
 	k = 0;
 	while (++i < j)
 		if ((tab[i] = remplir(str, &k, c)) == NULL)
@@ -165,6 +145,7 @@ char				**ft_split(char const *s, char c)
 			ft_free(tab, str);
 			return (0);
 		}
-	tab[i] = 0;
+	tab[i] = NULL;
 	return (tab);
 }
+

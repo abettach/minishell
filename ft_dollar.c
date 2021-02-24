@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:48 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/22 15:42:20 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/24 16:13:13 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void ft_get_num_dollar(t_mini *mini, char *arg)
 
 void ft_dollar(t_mini *mini)
 {
-    int i = 1;
+    int i = 0;
     int j = 1;
     int dollar = 0;
 

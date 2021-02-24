@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:33 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/06 15:17:35 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/23 15:38:37 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,22 @@ void ft_get_path(t_mini *mini)
             mini->run_path = mini->add_path[i];
 }
 
-void ft_get_home(t_mini *mini, char **envp)
+void ft_get_home(t_mini *mini)
 {
     int i = 0;
     int j = 0;
 
-    while (envp[i][0] != 'H' || envp[i][1] != 'O' || envp[i][2] != 'M' || envp[i][3] != 'E')
+    while (mini->envp_g[i][0] != 'H' || mini->envp_g[i][1] != 'O' || mini->envp_g[i][2] != 'M' || mini->envp_g[i][3] != 'E')
         i++;
-    while (envp[i][j] != '=')
+    if (!mini->envp_g[i])
+    {
+        mini->home = "ERROR";
+    }
+    else
+    {
+        while (mini->envp_g[i][j] != '=')
+            j++;
         j++;
-    j++;
-    mini->home = &envp[i][j];
+        mini->home = &mini->envp_g[i][j];
+    }
 }
