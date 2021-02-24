@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:14 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/24 16:05:37 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/24 18:20:55 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ void ft_cat_redirection(t_mini *mini)
 
 void ft_redirection(t_mini *mini, int i, char *type)
 {
-    int j = -1;
     int index;
 
-    mini->STD = 1;
     mini->redirection = 1;
     index = i;
     while ((ft_strcmp(mini->args[i], ">") == 0 || ft_strcmp(mini->args[i], ">>") == 0 || ft_strcmp(mini->args[i], "<") == 0) && mini->args[i])
@@ -49,13 +47,19 @@ void ft_redirection(t_mini *mini, int i, char *type)
         g_input_file = "";
         g_input_file = ft_strjoin(g_input_file, mini->args[i]);
         if (ft_strcmp(type, ">") == 0)
+        {
+            mini->STD = 1;
             mini->redirection_fd = open(g_input_file, O_RDWR | O_CREAT | O_TRUNC, 0777);
+        }
         else if (ft_strcmp(type, ">>") == 0)
+        {
+            mini->STD = 1;
             mini->redirection_fd = open(g_input_file, O_RDWR | O_CREAT | O_APPEND, 0777);
+        }
         else if (ft_strcmp(type, "<") == 0)
         {
             mini->STD = 0;
-             mini->redirection = 0;
+            mini->redirection = 0;
             mini->redirection_fd = open(g_input_file, O_RDWR, 0777);
         }
         free(g_input_file);
@@ -73,7 +77,6 @@ void ft_redirection(t_mini *mini, int i, char *type)
             mini->ArgsNum--;
             index++;
         }
-    
     dup2(mini->redirection_fd, mini->STD);
 }
 

@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:39 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/24 12:41:41 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/24 17:58:46 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void ft_exit(t_mini *mini)
 	else if (mini->shell_lvl < mini->first_lvl)
 	{
 		waitpid(-1,0,0);
+		if ((arg[0] < '1' && arg[0] > '9') || (mini->args[2]))
+			mini->exit_status = 255;
 		exit(ft_atoi(arg));
 	}
 }
