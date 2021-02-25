@@ -32,15 +32,7 @@
 #define CYN "\e[1;36m"
 #define WHT "\e[0;37m"
 
-int g_input_redirection;
-int g_output_redirection;
-int g_double_input_redirection;
-int g_pipe;
-char *g_double_redirection;
 char *g_input_file;
-char *g_output_file;
-char *g_cwd;
-char g_pwd[1024];
 
 typedef struct s_style
 {
@@ -148,9 +140,6 @@ char **ft_remove_unset(t_mini *mini, int index);
 int ft_equal_check(t_mini *mini, char *arg);
 void ft_dollar(t_mini *mini);
 void ft_pwd(t_mini *mini);
-void ft_input_redirection(t_mini *mini, int i);
-void ft_output_redirection(t_mini *mini, int i);
-void ft_double_input_redirection(t_mini *mini, int i);
 void ft_check_multi_command(t_mini *mini);
 void ft_old_pwd(t_mini *mini);
 char *ft_strlcpy(char *dst, const char *src, int size);
@@ -165,7 +154,6 @@ int ft_check_pipe(t_mini *mini, char **envp, int i);
 void ft_init_pipe(t_mini *mini);
 int ft_signal(t_mini *mini);
 void ft_ctrl_c(int signum);
-void start();
 void ft_start_minishell(t_mini *mini);
 void ft_dup2(t_mini *mini);
 void ft_shell_lvl(t_mini *mini);

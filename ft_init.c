@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:39 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/24 17:58:46 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:42:51 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,6 @@ void ft_init(t_mini *mini)
 	int j = -1;
 	i = -1;
 	mini->run_path = NULL;
-	g_input_redirection = 0;
-	g_output_redirection = 0;
-	mini->STD = 1;
-	g_double_input_redirection = 0;
-	g_pipe = 0;
 	// mini->exit_status = 0;
 	g_input_file = NULL;
-	g_output_file = NULL;
-	g_double_input_redirection = 0;
-	g_double_redirection = NULL;
 }
