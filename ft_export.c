@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:20 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/24 12:55:40 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:33:24 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ void ft_sort_table(t_mini *mini)
     }
 }
 
-int     ft_check_quotes(t_mini *mini)
+int ft_check_quotes(t_mini *mini)
 {
     int i = 0;
     int j = 0;
     while (mini->args[i])
     {
         j = 0;
-        while(mini->args[i][j])
+        while (mini->args[i][j])
         {
             if (mini->args[i][j] == '"' || mini->args[i][j] == 39)
                 return 1;
@@ -139,7 +139,6 @@ void ft_export(t_mini *mini)
     int j = 0;
     int l = -1;
     char *arg;
-
 
     if (mini->ArgsNum > 1)
     {

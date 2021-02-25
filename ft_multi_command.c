@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:51 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/11 14:38:35 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:40:42 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,11 @@ void ft_check_multi_command(t_mini *mini)
     {
         if (mini->line[i] == ';')
         {
-            index = 5;
+            index = 1;
             ft_multi_command(mini);
             break;
         }
-        else
-            i++;
+        i++;
     }
     if (index == 0)
     {
