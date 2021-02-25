@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:19:07 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/25 16:57:49 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:17:35 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ int main(int argc, char **argv, char **envp)
     {
         getcwd(mini.cwd, sizeof(mini.cwd));
         g_cwd = mini.cwd;
-        // ft_style(&mini);
+        ft_style(&mini);
         signal(SIGINT, ft_ctrl_c);
         signal(SIGQUIT, ft_ctrl_anti);
         r = get_next_line(0, &mini.line, &mini);
