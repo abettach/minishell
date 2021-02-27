@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:33 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/23 15:38:37 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/27 16:41:26 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,30 @@ void ft_get_path(t_mini *mini)
             mini->run_path = mini->add_path[i];
 }
 
+void ft_check_home(t_mini *mini)
+{
+    int i = 0;
+    int j = 0;
+    while (ft_strncmp(mini->envp_g[i], "HOME=/", 6) != 0 && mini->envp_g[i + 1])
+        i++;
+    if (ft_strncmp(mini->envp_g[i], "HOME=", ft_strlen("HOME=")) != 0)
+    {
+        mini->home_error = (char *)malloc(sizeof(char) * (6));
+        mini->home_error = "ERROR\0";
+    }
+    else
+    {
+        mini->home_error = (char *)malloc(sizeof(char) * (9));
+        mini->home_error = "NO_ERROR\0";
+    }
+}
+
 void ft_get_home(t_mini *mini)
 {
     int i = 0;
     int j = 0;
-
-    while (mini->envp_g[i][0] != 'H' || mini->envp_g[i][1] != 'O' || mini->envp_g[i][2] != 'M' || mini->envp_g[i][3] != 'E')
+    while (ft_strncmp(mini->envp_g[i], "HOME=", 5) != 0 && mini->envp_g[i + 1])
         i++;
-    if (!mini->envp_g[i])
-    {
-        mini->home = "ERROR";
-    }
-    else
-    {
-        while (mini->envp_g[i][j] != '=')
-            j++;
-        j++;
-        mini->home = &mini->envp_g[i][j];
-    }
+    if (ft_strncmp(mini->envp_g[i], "HOME=", ft_strlen("HOME=")) == 0)
+        mini->home = &mini->envp_g[i][5];
 }

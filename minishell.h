@@ -81,6 +81,7 @@ typedef struct s_mini
 	int redirection_fd;
 	int shell_lvl;
 	int first_lvl;
+	char *home_error;
 	int redirection_nocommand;
 	char **multi_command;
 	char *path;
@@ -169,4 +170,5 @@ char *ft_env_shellvl(t_mini *mini);
 int ft_atoi(const char *str);
 char *ft_itoa(int n);
 void    ft_redirection_nocommand(t_mini *mini);
+void ft_check_home(t_mini *mini);
 #endif

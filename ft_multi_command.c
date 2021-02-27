@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:51 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/25 16:40:42 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/27 14:57:42 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void ft_remove_space(t_mini *mini)
     int i = 0;
     int j = 0;
     int spaces = 0;
+    int inside_quotes = 0;
+    int inside = 0;
     char tmp;
     char *str;
 
@@ -31,17 +33,33 @@ void ft_remove_space(t_mini *mini)
     i = 0;
     while (mini->line[i])
     {
-        if ((mini->line[i] == ' ' && mini->line[i + 1] == ';') || (mini->line[i] == ' ' && mini->line[i - 1] == ';'))
+        if (mini->line[i] == 34 && inside == 0)
+        {
+            str[j] = mini->line[i];
+            j++;
+            inside = 1;
+            inside_quotes = 1;
+            i++;
+        }
+        if (mini->line[i] == 34 && inside == 1)
+        {
+            str[j] = mini->line[i];
+            j++;
+            inside = 0;
+            inside_quotes = 0;
+            i++;
+        }
+        if (((mini->line[i] == ' ' && mini->line[i + 1] == ';') || (mini->line[i] == ' ' && mini->line[i - 1] == ';')) && inside_quotes == 0)
             i++;
         str[j] = mini->line[i];
         j++;
-
         i++;
     }
     str[j] = '\0';
     mini->line = NULL;
     mini->line = str;
 }
+
 void ft_multi_command(t_mini *mini)
 {
     ft_remove_space(mini);
