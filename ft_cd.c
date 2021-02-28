@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:29 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/27 16:36:38 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/28 12:42:25 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ void ft_cd(t_mini *mini)
             ft_error("cd: HOME not set", "", "\n");
             return;
         }
-        mini->args[1] = mini->home;
+        ft_get_home_2(mini);
+        mini->args[1] = mini->home_two;
     }
-    chdir(mini->args[1]);
+    if (mini->args[1][0] == '~')
+        mini->args[1] = ft_strjoin(mini->home,&mini->args[1][1]);
+    if (chdir(mini->args[1]) == -1)
+        ft_error("cd: ",mini->args[1],": No such file or directory\n");
 }

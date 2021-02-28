@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:33 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/27 16:41:26 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/28 12:15:16 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,17 @@ void ft_check_home(t_mini *mini)
         mini->home_error = "NO_ERROR\0";
     }
 }
+
+void ft_get_home_2(t_mini *mini)
+{
+    int i = 0;
+    int j = 0;
+    while (ft_strncmp(mini->envp_g[i], "HOME=", 5) != 0 && mini->envp_g[i + 1])
+        i++;
+    if (ft_strncmp(mini->envp_g[i], "HOME=", ft_strlen("HOME=")) == 0)
+        mini->home_two = &mini->envp_g[i][5];
+}
+
 
 void ft_get_home(t_mini *mini)
 {

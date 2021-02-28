@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:49 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/27 16:36:55 by abettach         ###   ########.fr       */
+/*   Updated: 2021/02/28 12:21:33 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ void ft_start_minishell(t_mini *mini)
         ft_init(mini);
         if (mini->check_pipe == 0)
         {
-            ft_get_home(mini);
+            // ft_get_home_2(mini);
             ft_get_args(mini);
             ft_dollar(mini);
             ft_sorte_args(mini);
-            ft_get_path(mini);
             ft_check_args(mini);
+            ft_get_path(mini);
             ft_redirection_nocommand(mini);
             ft_check_redirection(mini);
         }
@@ -69,6 +69,7 @@ void ft_start_minishell(t_mini *mini)
         ft_check_home(mini);
         ft_dup2(mini);
         ft_init_pipe(mini);
+        mini->home_two = NULL;
         i++;
     }
 }

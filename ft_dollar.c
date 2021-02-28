@@ -162,7 +162,7 @@ void ft_dollar(t_mini *mini)
         {
             if ((mini->args[i][j] >= '0' && mini->args[i][j] <= '9'))
             {
-                while ((mini->args[i][j] >= '0' && mini->args[i][j] <= '9'))
+                // while ((mini->args[i][j] >= '0' && mini->args[i][j] <= '9'))
                     j++;
                 mini->args[i] = &mini->args[i][j];
             }

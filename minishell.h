@@ -88,6 +88,7 @@ typedef struct s_mini
 	char **envp_backup;
 	char **new_envp;
 	int pipe_fd[2];
+	char *home_two;
 	char *OLDPWD;
 	int redirection;
 	char *run_path;
@@ -171,4 +172,5 @@ int ft_atoi(const char *str);
 char *ft_itoa(int n);
 void    ft_redirection_nocommand(t_mini *mini);
 void ft_check_home(t_mini *mini);
+void ft_get_home_2(t_mini *mini);
 #endif
