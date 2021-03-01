@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:04 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/17 16:35:56 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:12:40 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void ft_echo(t_mini *mini)
                     i++;
                 deja = 1;
             }
-            if (mini->args[i][j] == 92)
-                j++;
             ft_putstr(&mini->args[i][j]);
             if (i + 1 < mini->ArgsNum)
                 ft_putstr(" ");

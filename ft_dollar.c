@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:48 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/25 17:03:08 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:25:21 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void ft_print_num(t_mini *mini, int i)
     }
 }
 
-int     ft_alphanum(char c)
+int ft_alphanum(char c)
 {
     if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
         return 1;
@@ -147,31 +147,52 @@ void ft_get_num_dollar(t_mini *mini, char *arg)
     }
 }
 
+int ft_check_dollar(t_mini *mini)
+{
+    int i = 0;
+    int j = 0;
+    while (mini->args[i])
+    {
+        j = 0;
+        while (mini->args[i][j])
+        {
+            if (mini->args[i][j] == '$')
+                return 1;
+            j++;
+        }
+        i++;
+    }
+    return 0;
+}
+
 void ft_dollar(t_mini *mini)
 {
     int i = 0;
     int j = 1;
     int dollar = 0;
 
-    ft_skipe_quotes(mini);
-    while (mini->args[i])
+    if (ft_check_dollar(mini) == 1)
     {
-        mini->dollar_num = 0;
-        ft_get_num_dollar(mini, mini->args[i]);
-        if (mini->args[i][0] == '$' && mini->args[i][1])
+       ft_skipe_quotes(mini);
+        while (mini->args[i])
         {
-            if ((mini->args[i][j] >= '0' && mini->args[i][j] <= '9'))
+            mini->dollar_num = 0;
+            ft_get_num_dollar(mini, mini->args[i]);
+            if (mini->args[i][0] == '$' && mini->args[i][1])
             {
-                // while ((mini->args[i][j] >= '0' && mini->args[i][j] <= '9'))
+                if ((mini->args[i][j] >= '0' && mini->args[i][j] <= '9'))
+                {
+                    // while ((mini->args[i][j] >= '0' && mini->args[i][j] <= '9'))
                     j++;
-                mini->args[i] = &mini->args[i][j];
+                    mini->args[i] = &mini->args[i][j];
+                }
+                else
+                {
+                    ft_get_value(mini, &mini->args[i][1]);
+                    mini->args[i] = mini->dollar.value;
+                }
             }
-            else
-            {
-                ft_get_value(mini, &mini->args[i][1]);
-                mini->args[i] = mini->dollar.value;
-            }
+            i++;
         }
-        i++;
     }
 }

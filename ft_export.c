@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:20 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/28 12:17:29 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:24:35 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,12 @@ void ft_skipe_quotes(t_mini *mini)
             j = 0;
             while (mini->args[i][j])
             {
-                if (mini->args[i][j] == 34 || mini->args[i][j] == '\'')
+                while (((mini->args[i][j] == 34 && mini->args[i][j+1] != 34 )|| (mini->args[i][j] == 39 && mini->args[i][j+1] != 39 )) && mini->args[i][j - 1] != 92)
+                    j++;
+                if (mini->args[i][j] == 92)
                     j++;
                 new_tab[i][k] = mini->args[i][j];
+                // printf("\nfdfdf %c\n",new_tab[i][k]);
                 k++;
                 j++;
             }
@@ -162,7 +165,7 @@ void ft_export(t_mini *mini)
                 }
         }
         else
-            ft_error("bash: export: ", mini->args[i], ": not a valid identifier\n");
+            ft_error("bash: export: `", mini->args[i], "': not a valid identifier\n");
     }
     if (mini->ArgsNum == 1)
     {

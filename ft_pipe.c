@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:02 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/24 15:50:15 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/01 15:52:30 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,50 +78,10 @@ void ft_remove_pipe_space(t_mini *mini, int i)
     free(str);
 }
 
-// char **ft_split_me(char *str, char c)
-// {
-//     int i = 0, l = 0;
-//     int s = 0;
-//     int j = 0;
-//     int pipe_num = 0;
-//     char **new_str;
-
-//     while (str[i])
-//     {
-//         if (str[i] == c)
-//             pipe_num++;
-//         i++;
-//     }
-//     pipe_num++;
-//     i = 0;
-//     new_str = malloc(sizeof(char *) * (pipe_num + 1));
-//     while (str[i])
-//     {
-//         while (str[l] != c && str[l])
-//             l++;
-//         if (re == 0)
-//             new_str[j] = (char *)malloc(sizeof(char) * (l + 1));
-//         l++;
-//         if (str[i] == c)
-//         {
-//             new_str[j][s] = '\0';
-//             j++;
-//             re = 1;
-//             s = 0;
-//             i++;
-//         }
-//         new_str[j][s] = str[i];
-//         i++;
-//         s++;
-//     }
-//     new_str[j][s] = '\0';
-//     return new_str;
-// }
 void ft_pipe(t_mini *mini, int i)
 {
     ft_remove_pipe_space(mini, i);
     mini->pipe.args = ft_split(mini->multi_command[i], '|');
-
 }
 
 void ft_pipe_run(t_mini *mini)
@@ -142,13 +102,11 @@ void ft_pipe_run(t_mini *mini)
             dup2(fdd, 0);
             ft_init(mini);
             ft_get_pipe_args(mini, i);
-            ft_sorte_args(mini);
-            ft_get_path(mini);
-            ft_check_args(mini);
             ft_dollar(mini);
-            ft_redirection_nocommand(mini);
-            ft_check_redirection(mini);
+            ft_sorte_args(mini);
+            ft_check_args(mini);
             ft_get_path(mini);
+            ft_check_redirection(mini);
             command = mini->args[0][0] == '/' ? mini->args[0] : mini->run_path;
             if (mini->pipe.args[i + 1] && mini->redirection == 0)
                 dup2(fd[1], 1);

@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:14 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/24 18:20:55 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/01 15:51:27 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int ft_check_redirection(t_mini *mini)
     int j = 0;
 
     mini->redirection = 0;
+    ft_redirection_nocommand(mini);
     while (mini->args[i])
     {
         mini->STD = -1;

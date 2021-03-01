@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:22 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/27 14:50:26 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/01 15:19:13 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ char *ft_strtrim(char const *s1, char const *set)
 int finde_next(char *ptr, int i, char c) // c = s[i],i == i, ptr = s
 {
 	i++;
-	while (ptr[i] != 34)
-	{
+	while ((ptr[i] != 34 || ptr[i] != 39) && ptr[i])
 		i++;
-	}
 	return (i);
 }
 
@@ -105,10 +103,10 @@ static char *remplir(char *s, int *k, char c)
 		i++;
 	start = i;
 	startt = i;
-	while ((s[i] != c && s[i] ) || (inside_quotes == 1))
+	while ((s[i] != c && s[i]) || (inside_quotes == 1))
 	{
 		if (s[i] == '\'' || s[i] == '"')
-			i = finde_next(s, i,s[i]);
+			i = finde_next(s, i, s[i]);
 		i++;
 	}
 	end = i;
