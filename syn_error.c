@@ -6,13 +6,43 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 12:35:52 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/01 17:36:08 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/01 17:48:47 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_multiline(t_mini *mini)
+int ft_multiline_2(t_mini *mini)
+{
+    int i = 0;
+    int quotes_open = 0;
+    int quotes_closed = 1;
+    int inside_quotes = 0;
+    while (mini->line[i])
+    {
+        if (mini->line[i] == 39 && mini->line[i-1] != 92)
+        {
+            if (quotes_open == 1)
+            {
+                quotes_closed = 1;
+                quotes_open = 0;
+                inside_quotes = 0;
+            }
+            else
+            {
+                quotes_open = 1;
+                quotes_closed = 0;
+                inside_quotes = 1;
+            }
+        }
+        i++;
+    }
+    if (quotes_closed == 0)
+        return 1;
+    return 0;
+}
+
+int ft_multiline_1(t_mini *mini)
 {
     int i = 0;
     int quotes_open = 0;
@@ -44,7 +74,7 @@ int ft_multiline(t_mini *mini)
 int ft_syntax_error(t_mini *mini)
 {
     int i = 0;
-    if (ft_multiline(mini) == 1)
+    if (ft_multiline_1(mini) == 1 || ft_multiline_2(mini) == 1)
         return 100;
     else
         while (mini->line[i])

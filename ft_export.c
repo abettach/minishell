@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:20 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/01 16:24:35 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/02 17:05:50 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,15 @@ void ft_skipe_quotes(t_mini *mini)
             j = 0;
             while (mini->args[i][j])
             {
-                while (((mini->args[i][j] == 34 && mini->args[i][j+1] != 34 )|| (mini->args[i][j] == 39 && mini->args[i][j+1] != 39 )) && mini->args[i][j - 1] != 92)
+                while (((mini->args[i][j] == 34 && mini->args[i][j + 1] != 34)
+                || (mini->args[i][j] == 39 && mini->args[i][j + 1] != 39)) &&
+                mini->args[i][j - 1] != 92)
                     j++;
-                if (mini->args[i][j] == 92)
+                if ((mini->args[i][j] == 92 && mini->args[i][j - 1] != 34)
+                || (mini->args[i][j] == 92 && mini->args[i][j - 1] == 34 &&
+                mini->args[i][j + 1] == '$'))
                     j++;
                 new_tab[i][k] = mini->args[i][j];
-                // printf("\nfdfdf %c\n",new_tab[i][k]);
                 k++;
                 j++;
             }
