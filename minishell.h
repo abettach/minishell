@@ -78,6 +78,7 @@ typedef struct s_mini
 	char **sort_args;
 	int exit_status;
 	int exit;
+	int dollarr;
 	int redirection_fd;
 	int shell_lvl;
 	int first_lvl;

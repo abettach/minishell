@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:48 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/01 16:25:21 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/03 16:22:06 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void ft_get_value(t_mini *mini, char *arg)
 {
     int i = 0;
 
+    mini->dollarr = 1;
     mini->dollar.value = "";
     if (mini->dollar_num > 1)
         mini->echo.args = ft_split(arg, '$');
@@ -151,6 +152,8 @@ int ft_check_dollar(t_mini *mini)
 {
     int i = 0;
     int j = 0;
+
+    mini->dollarr  = 0;
     while (mini->args[i])
     {
         j = 0;
