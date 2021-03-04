@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:48 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/03 16:22:06 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:30:43 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ int ft_check_dollar(t_mini *mini)
         j = 0;
         while (mini->args[i][j])
         {
-            if (mini->args[i][j] == '$')
+            if (mini->args[i][j] == '$' && mini->args[i][j - 1] != 92 )
                 return 1;
             j++;
         }

@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:16:41 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/25 14:45:50 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:37:46 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void ft_command_2(t_mini *mini, char *command)
     && ft_strcmp(mini->args[0],"./minishell") != 0 && ft_strcmp(mini->args[0], "minishell") != 0)
     {
         mini->exit_status = 127;
-        ft_error("command not found: ", mini->args[0], "\n");
+        ft_error(mini->args[0], ": command not found", "\n");
     }
     else
         ft_exec(mini, command);

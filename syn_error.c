@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 12:35:52 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/01 17:48:47 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:36:18 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int syn_error(t_mini *mini)
     else if (i == 9)
         ft_error("syntax error near unexpected token ", "`|'", "\n");
     else if (i == 100)
-        ft_error("Minishell : multiline commands ERROR","\n","");
+        ft_error("syntax error multiline commands","\n","");
     else if (i == 0)
         return 0;
     return 1;
