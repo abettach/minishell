@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:19:07 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/03 17:31:01 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/05 17:45:41 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ int main(int argc, char **argv, char **envp)
     int r;
 
     //printf("\n\n\t\tMINISHELL\t\t\n\n");
-    // mini.exit_status = 0;
+    mini.exit_status = 0;
     getcwd(mini.cwd, sizeof(mini.cwd));
     mini.envp_g = ft_copy_env(&mini, envp);
     ft_get_home(&mini);

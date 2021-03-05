@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:02 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/01 15:52:30 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/05 16:36:15 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void ft_pipe_run(t_mini *mini)
             dup2(fdd, 0);
             ft_init(mini);
             ft_get_pipe_args(mini, i);
+            ft_quotes(mini);
             ft_dollar(mini);
             ft_sorte_args(mini);
             ft_check_args(mini);

@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:04 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/04 16:02:59 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/05 15:30:32 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void ft_echo(t_mini *mini)
     int deja = 0;
     int N = 0;
 
-    ft_skipe_quotes(mini);
     if ((ft_strcmp(mini->args[1], "-n") == 0 && mini->args[2]) || (ft_strcmp(mini->args[1], "-n") != 0 && mini->args[1]))
     {
         while (mini->args[i])
@@ -39,8 +38,6 @@ void ft_echo(t_mini *mini)
                 deja = 1;
             }
             j = 0;
-            if (mini->args[i][j] == 92)
-                j++;
             ft_putstr(&mini->args[i][j]);
             if (i + 1 < mini->ArgsNum)
                 ft_putstr(" ");

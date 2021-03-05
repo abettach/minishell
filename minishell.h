@@ -174,4 +174,5 @@ char *ft_itoa(int n);
 void    ft_redirection_nocommand(t_mini *mini);
 void ft_check_home(t_mini *mini);
 void ft_get_home_2(t_mini *mini);
+void ft_quotes(t_mini *mini);
 #endif
