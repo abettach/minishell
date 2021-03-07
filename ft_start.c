@@ -6,12 +6,28 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:18:49 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/05 17:41:57 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:32:44 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void    ft_cpy_sort_arg(t_mini *mini)
+{
+    int i = 0;
+    int  j = 0;
+    while (mini->sort_args[i])
+        i++;
+    mini->args = malloc(sizeof(char *) * (i + 1));
+    i = 0;
+    while (mini->sort_args[i])
+    {
+        mini->args[i] = (char *)malloc(sizeof(char) * (ft_strlen(mini->sort_args[i]) + 1));
+        mini->args[i] = "";
+        mini->args[i] = ft_strjoin(mini->args[i],mini->sort_args[i]);
+        i++;
+    }
+}
 void ft_sorte_args(t_mini *mini)
 {
     int i = 0;
@@ -36,22 +52,7 @@ void ft_sorte_args(t_mini *mini)
             i++;
         }
         mini->sort_args[i] = NULL;
-        // i = -1;
-        // if (mini->args)
-        //     free(mini->args);
-        // while (mini->args[++i])
-        //     free(mini->args[i]);
-        // i = 0;
-        // while (mini->sort_args[i])
-        //     i++;
-        // mini->args = malloc(sizeof(char *) * i);
-        // i = 0;
-        // while (mini->sort_args[i])
-        // {
-        //     mini->args[i] = (char *)malloc(sizeof(char *) * (ft_strlen(mini->sort_args[i])));
-        //     mini->args[i] = ft_strcpy(mini->args[i])
-        // }
-        mini->args = mini->sort_args;
+        ft_cpy_sort_arg(mini);
     }
 }
 

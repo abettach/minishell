@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 12:35:52 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/04 17:36:18 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:21:31 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int ft_syntax_error(t_mini *mini)
         {
             if ((mini->line[i] == '>' && mini->line[i + 1] == '>' &&
                  mini->line[i + 2] == '>' && mini->line[i + 3] != '>') ||
-                (mini->line[i] == '>' && mini->line[i + 2] == '>'))
+                (mini->line[i] == '>' && mini->line[i+1] == ' ' && mini->line[i + 2] == '>'))
                 return 1;
             if (mini->line[i] == '>' && mini->line[i + 1] == ' ' &&
                 mini->line[i + 2] == '<')

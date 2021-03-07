@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:17:33 by abettach          #+#    #+#             */
-/*   Updated: 2021/02/28 12:15:16 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:35:32 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ void ft_get_path(t_mini *mini)
     i = -1;
     while (mini->add_path[++i])
         if (stat(mini->add_path[i], &buffer) == 0)
-            mini->run_path = mini->add_path[i];
+        {
+            mini->run_path = (char *)malloc(sizeof(char) * (ft_strlen(mini->add_path[i])));
+            mini->run_path = "";
+            mini->run_path = ft_strjoin(mini->run_path,mini->add_path[i]);
+        }
 }
 
 void ft_check_home(t_mini *mini)

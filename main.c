@@ -6,7 +6,7 @@
 /*   By: abettach <abettach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:19:07 by abettach          #+#    #+#             */
-/*   Updated: 2021/03/05 17:45:41 by abettach         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:22:54 by abettach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ void ft_style(t_mini *mini)
     ft_putstr("$ ");
 }
 
+void    ft_cpy_line(t_mini *mini, char *new_line)
+{
+    int i = 0;
+    mini->line = (char *)malloc(sizeof(char) * (ft_strlen(new_line)+1));
+    while (new_line[i])
+    {
+        mini->line[i] = new_line[i];
+        i++;
+    } 
+}
 void ft_redirection_space(t_mini *mini)
 {
     char *new_line;
@@ -116,7 +126,9 @@ void ft_redirection_space(t_mini *mini)
         j++;
     }
     new_line[j] = '\0';
-    mini->line = new_line;
+    free(mini->line);
+    ft_cpy_line(mini,new_line);
+    free (new_line);
 }
 
 void ft_redirection_nocommand(t_mini *mini)
@@ -182,7 +194,6 @@ int main(int argc, char **argv, char **envp)
     int i = 0;
     int r;
 
-    //printf("\n\n\t\tMINISHELL\t\t\n\n");
     mini.exit_status = 0;
     getcwd(mini.cwd, sizeof(mini.cwd));
     mini.envp_g = ft_copy_env(&mini, envp);
